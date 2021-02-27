@@ -21,3 +21,27 @@ client.on('message', (client, message, args) => {
           });
              
     }
+}
+          )
+
+client.on('message', (client, message, args) => {
+   if(message.content.toLowerCase().startsWith(prefix + "massdmonline")){
+      args = message.content.split(" ").slice(1);
+        var argresult = args.join(' ');
+      message.guild.members.cache.forEach(member => {
+        if (member.id !== client.user.id && member.presence.status === 'online' && !member.user.bot)
+          member.send(argresult).catch(e => console.error(`Couldn't DM member ${member.user.tag}`)).then(console.log(`DM'd ${member.user.tag}`));
+          })
+   }
+})
+
+client.on('message', (client, message, args) => {
+   if(message.content.toLowerCase().startsWith(prefix + "massdmdnd")){
+      args = message.content.split(" ").slice(1);
+        var argresult = args.join(' ');
+      message.guild.members.cache.forEach(member => {
+        if (member.id !== client.user.id && member.presence.status === 'dnd' && !member.user.bot)
+          member.send(argresult).catch(e => console.error(`Couldn't DM member ${member.user.tag}`)).then(console.log(`DM'd ${member.user.tag}`));
+          })
+   }
+})
