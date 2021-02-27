@@ -76,4 +76,4 @@ client.on('message', (client, message, args) => {
 
         message.channel.send(ping);
    }
-}
+})
